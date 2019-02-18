@@ -64,4 +64,20 @@ router.get('/profile/:id', (req,res) =>{
 		})
 	})
 })
+
+router.post('/profile', (req,res)=>{
+
+	Profile.create(req.body)
+	.then(profile =>{
+		res.json({
+		confirmation: 'sucess',
+		data: profile
+	})})
+	.catch(err => {
+		res.json({
+			confirmation: 'fail',
+			data: err.message
+		})
+	})
+})
 module.exports = router
