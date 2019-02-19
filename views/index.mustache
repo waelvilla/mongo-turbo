@@ -11,6 +11,7 @@
 			<div style="background:#f9f9f9;border:1px solid #ddd;border-radius:3px;padding:12px">
 				You are currently looking at the <strong style="color:red">index.mustache</strong> file in the 'views' directory of your project. This template is rendered with the Mustache templating engine. <span style="color:red">{{text}}</span>
 			</div>
+			<h3>Add Player</h3>
 			<form action="/api/profile/" method="POST">
 				<input type="text" name="firstName" placeholder="FirstName"> <br>
 				<input type="text" name="lastName" placeholder="LastName"> <br>
@@ -19,7 +20,13 @@
 				<input type="number" name="age" placeholder="age"> <br>
 				<input type="submit" value="Add Profile" > 
 			</form>
-
+			<h3>Add Team</h3>
+			<form action="/api/team/" method="POST">
+				<input type="text" name="teamName" placeholder="Team Name"> <br>
+				<input type="text" name="city" placeholder="City"> <br>
+				<input type="text" name="league" placeholder="League"> <br>
+				<input type="submit" value="Add Team" > 
+			</form>
 
 
 

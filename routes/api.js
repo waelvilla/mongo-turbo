@@ -5,7 +5,11 @@ const router = vertex.router()
 
 const Profile= require('../models/Profile')
 const Team= require('../models/Team')
+
+
+////// GET requests
 router.get('/profile', (req,res)=>{
+
 	let filters= req.query
 	if(filters.age != null){
 		filters= {
@@ -26,25 +30,6 @@ router.get('/profile', (req,res)=>{
 			message: err.message
 		})
 	})
-
-})
-
-router.get('/team', (req,res)=>{
-
-	Team.find()
-	.then(teams => {
-		res.json({
-			confirmation: 'success',
-			data: teams
-		})
-	})
-	.catch (err => {
-		res.json({
-			confirmation: 'fail',
-			message: err.message
-		})
-	})
-
 })
 
 router.get('/profile/:id', (req,res) =>{
@@ -65,6 +50,42 @@ router.get('/profile/:id', (req,res) =>{
 	})
 })
 
+router.get('/team', (req,res)=>{
+
+	Team.find()
+	.then(teams => {
+		res.json({
+			confirmation: 'success',
+			data: teams
+		})
+	})
+	.catch (err => {
+		res.json({
+			confirmation: 'fail',
+			message: err.message
+		})
+	})
+
+})
+
+router.get('/team/:id', (req,res)=>{
+	const id=req.params.id
+
+	Team.findById(id)
+	.then(team =>{
+		res.json({
+			confirmation: 'true',
+			data: team
+		})
+	})
+	.catch(err => {
+		res.json({
+			confirmation: 'fail',
+			data: err.message
+		})
+	})
+})
+////// POST requsts
 router.post('/profile', (req,res)=>{
 
 	Profile.create(req.body)
@@ -80,4 +101,22 @@ router.post('/profile', (req,res)=>{
 		})
 	})
 })
+
+router.post('/team', (req,res)=>{
+	Team.create(req.body)
+	.then(team =>{
+		res.json({
+			confirmation: 'success',
+			data: team
+		})
+	})
+	.catch(err =>{
+		res.json({
+			confirmation: 'fail',
+			data: err.message
+		})
+	})
+})
+
+
 module.exports = router
